@@ -23,6 +23,10 @@ export class FoodListComponent implements OnInit {
     this.foodService.all().then(foods => this.foods = foods);
   }
 
+  gotoEdit(id: number): void {
+    this.router.navigate(['/foods/edit/', id]);
+  }
+
   ngOnInit(): void {
     this.getFoods();
   }
