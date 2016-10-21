@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Food } from './models/food';
 import { FoodService } from './food.service';
@@ -11,7 +12,10 @@ import { FoodService } from './food.service';
 
 export class HomeComponent implements OnInit {
 
-  constructor(private foodService: FoodService) { }
+  constructor(
+    private foodService: FoodService,
+    private router: Router
+  ) { }
 
   foods: Food[];
 
