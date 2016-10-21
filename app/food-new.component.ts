@@ -17,7 +17,7 @@ export class FoodNewComponent {
     private router: Router
   ) { }
 
-  addFood(name: string, details: string, calories: number): void {
+  addFood(name: string, calories: number, details: string): void {
     this.foodService.add(name, calories, details);
   }
 
