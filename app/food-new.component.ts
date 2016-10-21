@@ -17,9 +17,10 @@ export class FoodNewComponent {
     private router: Router
   ) { }
 
-  addFood(name: string, calories: string, details: string): void {
+  addFood(name: string, date: string, calories: string, details: string): void {
+    var parsedDate: Date = new Date(date);
     var parsedCalories: number = parseInt(calories);
-    this.foodService.add(name, parsedCalories, details);
+    this.foodService.add(name, parsedDate, parsedCalories, details);
   }
 
 }

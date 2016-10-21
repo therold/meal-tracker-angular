@@ -42,7 +42,6 @@ export class FoodListComponent implements OnInit {
   getTotalCalories(foods: Food[]): number {
     var total: number = 0;
     for(var food of foods) {
-      console.log(typeof food.calories);
       total += food.calories;
     }
     return total;

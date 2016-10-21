@@ -22,9 +22,9 @@ export class FoodService {
       .then(foods => foods.find(food => food.id === id));
   }
 
-  add(name: string, calories: number, details: string): Promise<Food> {
+  add(name: string, date: Date, calories: number, details: string): Promise<Food> {
     return this.http
-      .post(this.url, JSON.stringify({name: name, calories: calories, details: details}), {headers: this.headers})
+      .post(this.url, JSON.stringify({name: name, date: date, calories: calories, details: details}), {headers: this.headers})
       .toPromise()
       .then(res => res.json().data);
   }

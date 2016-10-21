@@ -8,6 +8,12 @@
     </div>
   </div>
   <div class=form-group>
+    <label class="col-xs-2 control-label" for="date">Date</label>
+    <div class="col-xs-10">
+      <input class="form-control" type="Date" id="date" #date>
+    </div>
+  </div>
+  <div class=form-group>
     <label class="col-xs-2 control-label" for="calories">Calories</label>
     <div class="col-xs-10">
       <input class="form-control" type="number" id="calories" placeholder="Calories" #calories>
@@ -22,8 +28,8 @@
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-success"
-        (click)="addFood(name.value, calories.value, details.value);
-          name.value=''; calories.value=''; details.value='';">
+        (click)="addFood(name.value, date.value, calories.value, details.value);
+          name.value=''; date.value=''; calories.value=''; details.value='';">
         Add Food
       </button>
     </div>
