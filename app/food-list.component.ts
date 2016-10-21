@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { Food } from './models/food';
 import { FoodService } from './food.service';
+import { CaloriesPipe } from './calories.pipe'
 
 @Component({
   moduleId: module.id,
@@ -11,13 +12,17 @@ import { FoodService } from './food.service';
 })
 
 export class FoodListComponent implements OnInit {
+  foods: Food[];
+  calorieOption: string = "all";
 
   constructor(
     private foodService: FoodService,
     private router: Router
   ) { }
 
-  foods: Food[];
+  ngOnInit(): void {
+    this.getFoods();
+  }
 
   getFoods(): void {
     this.foodService.all().then(foods => this.foods = foods);
@@ -27,8 +32,8 @@ export class FoodListComponent implements OnInit {
     this.router.navigate(['/foods/edit/', id]);
   }
 
-  ngOnInit(): void {
-    this.getFoods();
+  onCalorieChange(option: string): void {
+    this.calorieOption = option;
   }
 
 }
