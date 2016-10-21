@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Food } from './models/food';
+import { Food } from './food.model';
 import { FoodService } from './food.service';
 
 @Component({

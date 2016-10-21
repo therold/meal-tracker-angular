@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
-import { Food } from './models/food';
+import { Food } from './food.model';
 
 @Injectable()
 export class FoodService {
