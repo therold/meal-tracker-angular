@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
+  moduleId: module.id,
   selector: 'home',
-  template: `<h1>Meal tracker</h1>`
+  templateUrl: 'views/home.html'
 })
 
 export class HomeComponent {
