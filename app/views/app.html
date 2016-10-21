@@ -1,1 +1,10 @@
-<router-outlet></router-outlet>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <a routerLink="/home" routerLinkActive="active">Home</a>
+    <a class="pull-right" routerLink="/foods" routerLinkActive="active">View All</a>
+  </div>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
