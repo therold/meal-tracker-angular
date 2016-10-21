@@ -14,6 +14,7 @@ import { HomeComponent } from './home.component';
 import { FoodListComponent } from './food-list.component';
 import { FoodNewComponent } from './food-new.component';
 import { FoodEditComponent } from './food-edit.component';
+import { CaloriesPipe } from './calories.pipe';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { FoodEditComponent } from './food-edit.component';
     HomeComponent,
     FoodListComponent,
     FoodNewComponent,
-    FoodEditComponent
+    FoodEditComponent,
+    CaloriesPipe
   ],
   bootstrap: [
     AppComponent
