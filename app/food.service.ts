@@ -17,6 +17,11 @@ export class FoodService {
      .then(response => response.json().data as Food[]);
   }
 
+  find(id: number): Promise<Food> {
+    return this.all()
+      .then(foods => foods.find(food => food.id === id));
+  }
+
   add(name: string, calories: number, details: string): Promise<Food> {
     return this.http
       .post(this.url, JSON.stringify({name: name, calories: calories, details: details}), {headers: this.headers})
@@ -24,7 +29,12 @@ export class FoodService {
       .then(res => res.json().data);
   }
 
-
-
+  update(food: Food): Promise<Food> {
+    const updateUrl = `${this.url}/${food.id}`;
+    return this.http
+      .put(updateUrl, JSON.stringify(food), {headers: this.headers})
+      .toPromise()
+      .then(() => food);
+  }
 
 }
