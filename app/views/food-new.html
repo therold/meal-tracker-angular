@@ -1,0 +1,31 @@
+<h1>New Food</h1>
+
+<div class="form-horizontal">
+  <div class=form-group>
+    <label class="col-xs-2 control-label" for="name">Name</label>
+    <div class="col-xs-10">
+      <input class="form-control" type="text" id="name" placeholder="Name" #name>
+    </div>
+  </div>
+  <div class=form-group>
+    <label class="col-xs-2 control-label" for="calories">Calories</label>
+    <div class="col-xs-10">
+      <input class="form-control" type="number" id="calories" placeholder="Calories" #calories>
+    </div>
+  </div>
+  <div class=form-group>
+    <label class="col-xs-2 control-label" for="name">Details</label>
+    <div class="col-xs-10">
+      <textarea class="form-control" type="text" id="name" placeholder="Details" rows="5" #details></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success"
+        (click)="addFood(name.value, calories.value, details.value);
+          name.value=''; calories.value=''; details.value='';">
+        Add Food
+      </button>
+    </div>
+  </div>
+</div>
