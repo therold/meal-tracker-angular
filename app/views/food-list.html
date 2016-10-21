@@ -16,6 +16,11 @@
       </div>
     </div>
   </div>
+  <h3>Today</h3>
+  <p>Total calories: {{ totalCalories }}</p>
+  <p>Average calories/food: {{ averageCalories }}</p>
+  <hr>
+  <h4>Foods for today</h4>
   <div *ngFor="let food of foods | calories:calorieOption">
     <p>Name: {{ food.name }}</p>
     <p>Calories: {{ food.calories }}</p>

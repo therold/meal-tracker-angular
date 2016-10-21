@@ -14,6 +14,8 @@ import { CaloriesPipe } from './calories.pipe'
 export class FoodListComponent implements OnInit {
   foods: Food[];
   calorieOption: string = "all";
+  totalCalories: number;
+  averageCalories: number;
 
   constructor(
     private foodService: FoodService,
@@ -22,10 +24,32 @@ export class FoodListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFoods();
+
   }
 
   getFoods(): void {
-    this.foodService.all().then(foods => this.foods = foods);
+    this.foodService.all().then(foods => {
+      if(foods.length > 0) {
+        this.foods = foods;
+        this.totalCalories = this.getTotalCalories(foods);
+        this.averageCalories = this.getAverageCalories(foods);
+      } else {
+        this.foods = [];
+      }
+    });
+  }
+
+  getTotalCalories(foods: Food[]): number {
+    var total: number = 0;
+    for(var food of foods) {
+      console.log(typeof food.calories);
+      total += food.calories;
+    }
+    return total;
+  }
+
+  getAverageCalories(foods: Food[]): number {
+    return this.getTotalCalories(foods) / foods.length || 0 ;
   }
 
   gotoEdit(id: number): void {
