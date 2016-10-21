@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { Food } from './models/food';
+import { FoodService } from './food.service';
 
 @Component({
   moduleId: module.id,
@@ -6,6 +9,18 @@ import { Component } from '@angular/core';
   templateUrl: 'views/home.html'
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
+  constructor(private foodService: FoodService) { }
+
+  foods: Food[];
+
+  getFoods(): void {
+    this.foodService.all().then(foods => this.foods = foods);
+  }
+
+  ngOnInit(): void {
+    this.getFoods();
+  }
 
 }

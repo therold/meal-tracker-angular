@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
 
+import { FoodService } from './food.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -20,6 +22,7 @@ import { HomeComponent } from './home.component';
     AppComponent
   ],
   providers: [
+    FoodService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ]
 })
