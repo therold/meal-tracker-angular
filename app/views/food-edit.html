@@ -1,0 +1,34 @@
+<h1>Edit Food</h1>
+<div *ngIf='!food'>
+  <h3>Loading...</h3>
+</div>
+<div *ngIf='food'>
+  <div class="form-horizontal">
+    <div class=form-group>
+      <label class="col-xs-2 control-label" for="name">Name</label>
+      <div class="col-xs-10">
+        <input class="form-control" type="text" id="name" placeholder="Name" [(ngModel)]='food.name'>
+      </div>
+    </div>
+    <div class=form-group>
+      <label class="col-xs-2 control-label" for="calories">Calories</label>
+      <div class="col-xs-10">
+        <input class="form-control" type="number" id="calories" placeholder="Calories" [(ngModel)]='food.calories'>
+      </div>
+    </div>
+    <div class=form-group>
+      <label class="col-xs-2 control-label" for="name">Details</label>
+      <div class="col-xs-10">
+        <textarea class="form-control" type="text" id="name" placeholder="Details" rows="5" [(ngModel)]='food.details'></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-warning"
+          (click)="updateFood()">
+          Update Food
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
