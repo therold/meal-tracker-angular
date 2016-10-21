@@ -1,0 +1,22 @@
+body {
+  margin-top: 60px
+}
+
+nav a {
+  padding: 5px 10px;
+  text-decoration: none !important;
+  margin-top: 10px;
+  display: inline-block;
+  border-radius: 4px;
+  bottom: 0;
+}
+nav a:visited, a:link {
+  color: #999;
+}
+nav a:hover {
+  color: #DDD;
+  background-color: #333;
+}
+nav a.active {
+  color: #FFF;
+}
