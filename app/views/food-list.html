@@ -1,3 +1,12 @@
 <h1>Food List</h1>
-
-<p *ngFor="let food of foods"> {{ food.name }}</p>
+<div *ngIf='!foods'>
+  <h3>Loading...</h3>
+</div>
+<div *ngIf='foods'>
+  <div *ngFor="let food of foods">
+    <p>Name: {{ food.name }}</p>
+    <p>Calories: {{ food.calories }}</p>
+    <p>Details {{ food.details }}</p>
+    <button class="btn btn-warning" (click)="gotoEdit(food.id)">Edit</button>
+  </div>
+</div>
