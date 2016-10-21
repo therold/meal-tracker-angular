@@ -82,6 +82,10 @@ gulp.task('cssBower', ['cssBowerClean'], function() {
 gulp.task('bower', ['jsBower', 'cssBower']);
 
 ////////////////////// SASS //////////////////////
+gulp.task('sassClean', function() {
+  return del(['./build/css/*.css']);
+});
+
 
 gulp.task('sassBuild', function() {
   return gulp.src(['resources/styles/*'])
@@ -133,3 +137,6 @@ gulp.task('build', ['ts', 'views'], function(){
   gulp.start('bower');
   gulp.start('sassBuild');
 });
+
+
+gulp.task('clean', ['tsClean', 'viewsClean', 'jsBowerClean', 'cssBowerClean', 'sassClean']);
