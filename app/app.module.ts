@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
+import { FoodListComponent } from './food-list.component';
 
 import { FoodService } from './food.service';
 
@@ -16,7 +17,8 @@ import { FoodService } from './food.service';
   ],
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    FoodListComponent
   ],
   bootstrap: [
     AppComponent
