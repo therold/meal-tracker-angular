@@ -66,10 +66,6 @@ export class FoodListComponent implements OnInit {
     return dates;
   }
 
-  gotoEdit(id: number): void {
-    this.router.navigate(['/foods/edit/', id]);
-  }
-
   onCalorieChange(option: string): void {
     this.calorieOption = option;
   }

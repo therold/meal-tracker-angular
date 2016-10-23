@@ -40,16 +40,7 @@
       <div class="dayFood">
         <h4><strong>Foods eaten</strong></h4>
         <div *ngFor="let food of day.foods | calories:calorieOption">
-          <div class="row">
-            <div class="col-xs-6">
-              <p>Name: {{ food.name }}</p>
-            </div>
-            <div class="col-xs-6">
-              <button class="btn btn-default pull-right" (click)="gotoEdit(food.id)">Edit</button>
-              <p>Calories: {{ food.calories }}</p>
-            </div>
-          </div>
-          <p>Details: <em>{{ food.details }}</em></p>
+          <food-view [food]="food"></food-view>
           <hr>
         </div>
       </div>

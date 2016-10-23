@@ -11,6 +11,7 @@ import { FoodService } from './food.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
+import { FoodComponent } from './food.component';
 import { FoodListComponent } from './food-list.component';
 import { FoodNewComponent } from './food-new.component';
 import { FoodEditComponent } from './food-edit.component';
@@ -27,6 +28,7 @@ import { CaloriesPipe } from './calories.pipe';
   declarations: [
     AppComponent,
     HomeComponent,
+    FoodComponent,
     FoodListComponent,
     FoodNewComponent,
     FoodEditComponent,
