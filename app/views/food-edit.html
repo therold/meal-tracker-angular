@@ -17,6 +17,12 @@
       </div>
     </div>
     <div class=form-group>
+      <label class="col-xs-2 control-label" for="date">Date</label>
+      <div class="col-xs-10">
+        <input class="form-control" type="Date" id="date" [(ngModel)]='dateFormatted'>
+      </div>
+    </div>
+    <div class=form-group>
       <label class="col-xs-2 control-label" for="name">Details</label>
       <div class="col-xs-10">
         <textarea class="form-control" type="text" id="name" placeholder="Details" rows="5" [(ngModel)]='food.details'></textarea>

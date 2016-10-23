@@ -14,6 +14,8 @@ import { FoodService } from './food.service';
 export class FoodEditComponent implements OnInit {
   @Input()
   food: Food;
+  dateFormatted: string;
+
 
   constructor(
     private foodService: FoodService,
@@ -22,6 +24,8 @@ export class FoodEditComponent implements OnInit {
   ) { }
 
   updateFood(): void {
+    this.food.date = new Date(this.dateFormatted);
+    this.food.date.setTime(this.food.date.getTime() + this.food.date.getTimezoneOffset()*60*1000);
     this.foodService.update(this.food)
       .then(() => this.goBack());
   }
@@ -38,7 +42,10 @@ export class FoodEditComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       let id = parseInt(params['id']);
       this.foodService.find(id)
-        .then(food => this.food = food)
+        .then(food => {
+          this.food = food;
+          this.dateFormatted = this.food.date.toISOString().substr(0, 10);
+        })
     })
   }
 
