@@ -12,6 +12,7 @@ import { FoodService } from './food.service';
 
 export class FoodNewComponent {
   today: Date = new Date();
+  todayFormatted = this.today.toISOString().substr(0, 10);
 
   constructor(private foodService: FoodService, private router: Router) {
     this.today.setHours(0,0,0,0);
