@@ -14,12 +14,26 @@ export class FoodService {
   all(): Promise<Food[]> {
     return this.http.get(this.url)
      .toPromise()
-     .then(response => response.json().data as Food[]);
+     .then(response => response.json().data as Food[])
+     .then(
+       foods => {
+         for(var i = 0; i < foods.length; i++) {
+           foods[i].date = new Date(foods[i].date);
+           foods[i].date.setHours(0,0,0,0);
+         }
+         return foods;
+       }
+     );
   }
 
   find(id: number): Promise<Food> {
     return this.all()
       .then(foods => foods.find(food => food.id === id));
+  }
+
+  findByDatetime(datetime: number): Promise<Food[]> {
+    return this.all()
+      .then(foods => foods.filter(food => food.date.getTime() === datetime));
   }
 
   add(name: string, date: Date, calories: number, details: string): Promise<Food> {
