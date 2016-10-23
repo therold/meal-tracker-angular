@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { DayInfo } from './dayInfo.model';
 import { Food } from './food.model';
 import { FoodService } from './food.service';
 import { CaloriesPipe } from './calories.pipe'
@@ -13,42 +14,56 @@ import { CaloriesPipe } from './calories.pipe'
 
 export class FoodListComponent implements OnInit {
   foods: Food[];
+  today: Date = new Date();
+  yesterday: Date = new Date();
+  dayInfos: DayInfo[] = [];
   calorieOption: string = "all";
-  totalCalories: number;
-  averageCalories: number;
+
 
   constructor(
     private foodService: FoodService,
     private router: Router
-  ) { }
+  ) {
+    this.today.setHours(0,0,0,0);
+    this.yesterday.setDate(this.today.getDate() - 1);
+  }
 
   ngOnInit(): void {
-    this.getFoods();
-
+    this.getInfoFromDb();
   }
 
-  getFoods(): void {
-    this.foodService.all().then(foods => {
-      if(foods.length > 0) {
-        this.foods = foods;
-        this.totalCalories = this.getTotalCalories(foods);
-        this.averageCalories = this.getAverageCalories(foods);
-      } else {
-        this.foods = [];
+  getInfoFromDb(): void {
+    this.foodService.all().then(
+      foods => {
+        if(foods.length === 0) {
+          this.foods = [];
+        } else {
+          this.foods = foods;
+          this.setDayInfo(foods);
+        }
       }
-    });
+    );
   }
 
-  getTotalCalories(foods: Food[]): number {
-    var total: number = 0;
-    for(var food of foods) {
-      total += food.calories;
+  setDayInfo(foods: Food[]): void {
+    var datetimes: number[] = this.getUniqueDays(foods);
+    datetimes.sort((a, b) => b - a);
+    for (var datetime of datetimes) {
+      this.foodService.findByDatetime(datetime).then(foods => {
+        var date = new Date(foods[0].date);
+        this.dayInfos.push(new DayInfo(date, foods));
+      });
     }
-    return total;
   }
 
-  getAverageCalories(foods: Food[]): number {
-    return this.getTotalCalories(foods) / foods.length || 0 ;
+  getUniqueDays(foods: Food[]): number[] {
+    var dates: number[] = [];
+    for(var food of foods) {
+      if(!dates.includes(food.date.getTime())) {
+        dates.push(food.date.getTime());
+      }
+    }
+    return dates;
   }
 
   gotoEdit(id: number): void {
