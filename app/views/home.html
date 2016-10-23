@@ -1,3 +1,51 @@
 <h1>Home</h1>
+<div *ngIf='!loaded'>
+  <h3>Loading...</h3>
+</div>
 
-<p *ngFor="let food of foods"> {{ food.name }}</p>
+<div *ngIf="loaded && dayInfo.foods.length === 0">
+  <h3>You don't have any foods entered for today!</h3>
+  <p><a routerLink="/foods/new">Click here</a> to start adding foods.</p>
+</div>
+
+<div *ngIf='loaded && dayInfo.foods.length > 0'>
+  <div class="form-horizontal">
+    <div class="form-group">
+      <label class="col-xs-1 control-label" for="calorieFilter">Show</label>
+      <div class="col-xs-3">
+        <select (change)="onCalorieChange($event.target.value)" class="form-control" id="calorieFilter">
+          <option value="all">All</option>
+          <option value ="low">Low calorie</option>
+          <option value ="high">High calorie</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <h3>Today, {{ dayInfo.date | date: 'MM/dd/yyyy' }}</h3>
+    <div class="day">
+      <div class="dailyStats">
+        <div class="row">
+          <div class="col-xs-12">
+            <h4><strong>Daily totals</strong></h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <p>Average calories: {{ dayInfo.getAverageCalories() }}</p>
+          </div>
+          <div class="col-xs-6">
+            <p>Total calories: {{ dayInfo.getTotalCalories() }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="dayFood">
+        <h4><strong>Foods eaten</strong></h4>
+        <div *ngFor="let food of dayInfo.foods | calories:calorieOption">
+          <food-view [food]="food"></food-view>
+          <hr>
+        </div>
+      </div>
+    </div>
+
+</div>

@@ -11,11 +11,11 @@ import { FoodService } from './food.service';
 })
 
 export class FoodNewComponent {
+  today: Date = new Date();
 
-  constructor(
-    private foodService: FoodService,
-    private router: Router
-  ) { }
+  constructor(private foodService: FoodService, private router: Router) {
+    this.today.setHours(0,0,0,0);
+  }
 
   addFood(name: string, date: string, calories: string, details: string): void {
     var parsedDate: Date = new Date(date);
