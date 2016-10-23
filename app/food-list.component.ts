@@ -5,6 +5,7 @@ import { DayInfo } from './dayInfo.model';
 import { Food } from './food.model';
 import { FoodService } from './food.service';
 import { CaloriesPipe } from './calories.pipe'
+import { CountPipe } from './count.pipe'
 
 @Component({
   moduleId: module.id,

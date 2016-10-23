@@ -22,6 +22,7 @@
     </div>
   </div>
 
+<div *ngIf="(dayInfo.foods | calories:calorieOption | count) > 0">
   <h3>Today, {{ dayInfo.date | date: 'MM/dd/yyyy' }}</h3>
     <div class="day">
       <div class="dailyStats">

@@ -18,30 +18,32 @@
   </div>
 
   <div *ngFor="let day of dayInfos">
-    <h3 *ngIf="day.date.getTime() === today.getTime()">Today, {{ day.date | date: 'MM/dd/yyyy' }}</h3>
-    <h3 *ngIf="day.date.getTime() === yesterday.getTime()">Yesterday, {{ day.date | date: 'MM/dd/yyyy' }}</h3>
-    <h3 *ngIf="day.date.getTime() != today.getTime() && day.date.getTime() != yesterday.getTime()">{{ day.date | date: 'EEEE, MM/dd/yyyy' }}</h3>
-    <div class="day">
-      <div class="dailyStats">
-        <div class="row">
-          <div class="col-xs-12">
-            <h4><strong>Daily totals</strong></h4>
+    <div *ngIf="(day.foods | calories:calorieOption | count) > 0">
+      <h3 *ngIf="day.date.getTime() === today.getTime()">Today, {{ day.date | date: 'MM/dd/yyyy' }}</h3>
+      <h3 *ngIf="day.date.getTime() === yesterday.getTime()">Yesterday, {{ day.date | date: 'MM/dd/yyyy' }}</h3>
+      <h3 *ngIf="day.date.getTime() != today.getTime() && day.date.getTime() != yesterday.getTime()">{{ day.date | date: 'EEEE, MM/dd/yyyy' }}</h3>
+      <div class="day">
+        <div class="dailyStats">
+          <div class="row">
+            <div class="col-xs-12">
+              <h4><strong>Daily totals</strong></h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <p>Average calories: {{ day.getAverageCalories() }}</p>
+            </div>
+            <div class="col-xs-6">
+              <p>Total calories: {{ day.getTotalCalories() }}</p>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-6">
-            <p>Average calories: {{ day.getAverageCalories() }}</p>
+        <div class="dayFood">
+          <h4><strong>Foods eaten</strong></h4>
+          <div *ngFor="let food of day.foods | calories:calorieOption">
+            <food-view [food]="food"></food-view>
+            <hr>
           </div>
-          <div class="col-xs-6">
-            <p>Total calories: {{ day.getTotalCalories() }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="dayFood">
-        <h4><strong>Foods eaten</strong></h4>
-        <div *ngFor="let food of day.foods | calories:calorieOption">
-          <food-view [food]="food"></food-view>
-          <hr>
         </div>
       </div>
     </div>
