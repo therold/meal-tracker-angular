@@ -19,6 +19,7 @@ export class FoodNewComponent {
 
   addFood(name: string, date: string, calories: string, details: string): void {
     var parsedDate: Date = new Date(date);
+    parsedDate.setTime(parsedDate.getTime() + parsedDate.getTimezoneOffset()*60*1000);
     var parsedCalories: number = parseInt(calories);
     this.foodService.add(name, parsedDate, parsedCalories, details);
   }
